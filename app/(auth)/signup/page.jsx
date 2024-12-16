@@ -71,7 +71,15 @@ export default function Page() {
                   focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
+
+            <div className="">
+              <Link href={'/signin'}>
+            <h6 className="text-blue-700 gap-2 py-1 text-xs"> Already have an accoun? Click to Login!</h6>
+            </Link>
           </div>
+          </div>
+
+          
 
           {/* Submit Button */}
           <div>
@@ -81,7 +89,7 @@ export default function Page() {
                bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm
                 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Sign in
+              Sign Up
             </button>
           </div>
         </form>
@@ -121,3 +129,5 @@ export default function Page() {
     </div>
   );
 }
+
+
