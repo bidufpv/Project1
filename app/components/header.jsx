@@ -21,7 +21,7 @@ export default function Header() {
   ];
 
   return (
-    <nav className=" flex item-center justify-between py-3 px-10 border-b">
+    <nav className=" flex flex-wrap item-center hover:text-slate-700 font-normal justify-between py-3 px-4 sm:px-6 lg:px-1 border-b">
       <img className="h-10 w-14" src="/logo.jpg" alt="" />
       <div className="flex gap-4 items-center">
 
@@ -36,10 +36,10 @@ export default function Header() {
       </div>
       <div className="flex flex-row justify-center gap-5 overflow-hidden">
       <Link href={'/signin'}>
-      <button className="bg-blue-700 px-4 py-2 rounded-2xl text-white">Sign-In</button>
+      <button className="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-2xl text-white">Sign-In</button>
       </Link>
       <Link href={'/signup'}>
-      <button className="bg-blue-700 px-4 py-2 rounded-2xl text-white">Sign-Up</button>
+      <button className="bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-2xl text-white">Sign-Up</button>
       </Link>
       </div>
     </nav>

@@ -35,7 +35,8 @@ export default function Page() {
                 type="email"
                 required
                 autoComplete="email"
-                className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900
+                 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
           </div>
@@ -65,7 +66,9 @@ export default function Page() {
                 type="password"
                 required
                 autoComplete="current-password"
-                className="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full rounded-md border
+                 border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400
+                  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
           </div>
@@ -74,7 +77,9 @@ export default function Page() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="flex w-full justify-center rounded-md
+               bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm
+                hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Sign in
             </button>
@@ -86,12 +91,14 @@ export default function Page() {
           {/* Google Button */}
           <button
             type="button"
-            className="flex w-full items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+            className="flex w-full items-center justify-center gap-2 rounded-md border
+             border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 
+             shadow-sm hover:bg-gray-50"
           >
             <img
               src="google.png"
               alt="Google Logo"
-              className="h-6 w-6 bg-transparent"
+              className="h-7 w-9 bg-transparent"
             />
             Sign Up with Google
           </button>
@@ -99,12 +106,13 @@ export default function Page() {
           {/* GitHub Button */}
           <button
             type="button"
-            className="flex w-full items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+            className="flex w-full items-center justify-center gap-2 rounded-md border
+             border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
           >
             <img
               src="/github.png"
               alt="GitHub Logo"
-              className="h-6 w-6 bg-transparent"
+              className="h-7 w-10 bg-transparent"
             />
             Sign Up with GitHub
           </button>
