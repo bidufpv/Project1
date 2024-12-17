@@ -3,9 +3,19 @@ import { auth } from "@/lib/auth/firebase";
 import { GithubAuthProvider,GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+
+  const {user} = useAuth();
+  const router = useRouter();
+  useEffect(()=>{
+       if(user){
+        router.push('/dashboard')
+       }
+  },[user])
 
   const [isLoading, SetIsLoading] = useState(false);
 
