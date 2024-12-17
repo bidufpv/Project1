@@ -8,7 +8,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-
+ 
+  //for checking user login and redirecting to dahboard page
   const {user} = useAuth();
   const router = useRouter();
   useEffect(()=>{
