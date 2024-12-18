@@ -21,7 +21,8 @@ export default function Header() {
   ];
 
   return (
-    <nav className=" flex flex-wrap item-center hover:text-slate-700 font-normal justify-between py-3 px-4 sm:px-6 lg:px-1 border-b">
+    <nav className=" flex flex-wrap item-center hover:text-slate-700 font-normal
+     justify-between py-3 px-4 sm:px-6 lg:px-1 border-b">
       <img className="h-10 w-14" src="/logo.jpg" alt="" />
       <div className="flex gap-4 items-center">
 

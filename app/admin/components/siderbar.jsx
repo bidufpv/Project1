@@ -56,7 +56,7 @@ const menuList = [
 
     return  <section className="flex flex-col gap-2 items-center
      md:w-[200px] bg-white border-r px-5 py-3 h-screen overflow-hidden">
-        <img className="h-20  " src="/logo.jpg" alt="" />
+        <img className="h-12  " src="/logo.jpg" alt="" />
         <ul className="flex-1 h-full overflow-y-auto flex flex-col gap-5  ">
 
             {menuList?.map((item, key)=>(
@@ -78,7 +78,7 @@ function SelectedTab({item}){
     const pathName  = usePathname();
     // Check if the current path starts with the menu item's link
     const isSelected = pathName === item?.link;
-    console.log(isSelected);
+    // console.log(isSelected);
     
     return (
         <Link href={item?.link} className="block group h-10 w-50">
