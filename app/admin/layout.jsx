@@ -48,6 +48,7 @@ export default function Layout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathName = usePathname();
 
+  //for chaning the pathname and toggling the sidebar
   useEffect(()=>{
      toggleSideBar();
   }, [pathName])
@@ -67,7 +68,7 @@ export default function Layout({ children }) {
       <div
         className={`fixed md:hidden inset-y-0 left-0 z-50 transform 
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        transition-transform duration-300 ease-in-out`}
+        transition-transform duration-500 ease-in-out`}
       >
         <Sidebar />
       </div>
