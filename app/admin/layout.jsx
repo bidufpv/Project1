@@ -1,83 +1,64 @@
-// "use client";
-// import { useState } from "react";
-// import Header from "./components/header.jsx";
-// import Sidebar from "./components/siderbar.jsx";
-
-// export default function Layout({children}){
-
-//      const[isOpen, setIsOpen] = useState(false);
-
-//      const toggleSideBar = ()=>{
-//           setIsOpen(!isOpen);
-//      }
-      
-//      console.log(setIsOpen);
-//      console.log(isOpen);
-     
-//      return( 
-//        <main className="flex relative">
-
-//         {/* for desktop size */}
-//         <div className="hidden md:block ">
-//         <Sidebar />
-//         </div>
-
-//         {/* for mobile size */}
-//         <div className={`fixed md:hidden ${isOpen ? "translate-x-0" : "-translate-x-[1000px]"} `}>
-//         <Sidebar />
-//         </div>
-        
-
-//        <section className="flex-1 flex flex-col min-h-screen"> 
-//           <Header toggleSideBar={toggleSideBar}/>
-//           <section className="flex-1 bg-slate-100 ">
-//           {children} 
-//           </section>
-          
-//        </section> 
-//      </main>
-// )}
-
 "use client";
-import { useEffect, useState } from "react";
-import Header from "./components/header.jsx";
-import Sidebar from "./components/siderbar.jsx";
-import { usePathname } from "next/navigation.js";
+import AuthContextProvider, {useAuth} from "@/contexts/AuthContext";
+import AdminLayout from "./components/adminLayout";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { CircularProgress } from "@nextui-org/react";
+export default function Layout({children}){
 
-export default function Layout({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathName = usePathname();
 
-  //for chaning the pathname and toggling the sidebar
-  useEffect(()=>{
-     toggleSideBar();
-  }, [pathName])
+     return( 
+     
+     <AuthContextProvider>
+          <CheckingAdmin>
+           {children}
+          </CheckingAdmin>
+     </AuthContextProvider>
 
-  const toggleSideBar = () => {
-    setIsOpen(!isOpen);
-  };
+)}
 
-  return (
-    <main className="flex relative">
-      {/* Desktop Sidebar */}
-      <div className="hidden md:block">
-        <Sidebar />
-      </div>
 
-      {/* Mobile Sidebar */}
-      <div
-        className={`fixed md:hidden inset-y-0 left-0 z-50 transform 
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        transition-transform duration-500 ease-in-out`}
-      >
-        <Sidebar />
-      </div>
-
-      {/* Main Content */}
-      <section className="flex-1 flex flex-col min-h-screen">
-        <Header toggleSideBar={toggleSideBar} />
-        <section className="flex-1 bg-slate-100">{children}</section>
-      </section>
-    </main>
-  );
-}
+function CheckingAdmin({ children }) {
+     // This component checks if the user is authenticated and handles loading or redirection.
+   
+     const { user, isLoading } = useAuth(); 
+     // Extract `user` and `isLoading` state from the authentication context.
+     const router = useRouter(); 
+     // Get access to the router for navigation.
+   
+     useEffect(() => {
+       // Redirect to the sign-in page if the user is not logged in and the loading is complete.
+       if (!user && !isLoading) {
+         router.push('/signin'); 
+         // Navigate to the `/signin` page if no user is found.
+       }
+     }, [user, isLoading]); 
+     
+   
+     if (isLoading) {
+       // While authentication data is still loading, show a spinner.
+       return (
+         <div className="h-screen w-screen flex justify-center items-center">
+           {/* Full-screen centered loading spinner */}
+           <CircularProgress />
+         </div>
+       );
+     }
+   
+     if (!user) {
+       // If the user is not logged in (after loading), display a message.
+       return (
+         <div className="h-screen w-screen flex justify-center items-center">
+           {/* Full-screen centered message */}
+           <h1>Please Login First</h1>
+         </div>
+       );
+     }
+   
+     // If the user is authenticated, render the admin layout and children components.
+     return (
+       <AdminLayout>
+         {children}
+       </AdminLayout>
+     );
+   }
