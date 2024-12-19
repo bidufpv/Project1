@@ -11,6 +11,7 @@ User,
 Star,
 Library,
 LogOut,
+Shield,
  } from "lucide-react";
 
 import Link from "next/link";
@@ -54,6 +55,11 @@ const menuList = [
         link: '/admin/collection',
         icon: <Library className="w-5 h-5"/>
     },
+    {
+        name: "Admin",
+        link: '/admin/admins',
+        icon: <Shield className="w-5 h-5" />
+    },
 ];
 
     return (
@@ -74,8 +80,8 @@ const menuList = [
             //async function to handle logout logic
             onClick={async()=>{
                 try {
-                    //Display a promise toast to show notifications based on the signOut process
 
+                    //Display a promise toast to show notifications based on the signOut process
                     await toast.promise(signOut(auth),{  //signOut(auth) initiates the logout process comes from firebase auth
                          // Error state: Displays an error message if signOut fails
                         error: (e) => e?.message, //Extracts and displays the error message

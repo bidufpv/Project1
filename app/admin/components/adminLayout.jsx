@@ -42,27 +42,25 @@ export default function AdminLayout({ children }) {
     setIsOpen(!isOpen);
   };
 
+
   return (
-    <main className="flex relative">
-      {/* Desktop Sidebar */}
+    <main className="relative flex">
       <div className="hidden md:block">
         <Sidebar />
       </div>
-
-      {/* Mobile Sidebar */}
-      <div ref={sideBarRef}
-        className={`fixed md:hidden inset-y-0 left-0 z-50 transform 
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-        transition-transform duration-300 ease-in-out`}
+      <div
+        ref={sideBarRef}
+        className={`fixed md:hidden ease-in-out transition-all duration-400 z-50 
+        ${isOpen ? "translate-x-0" : "-translate-x-[260px]"}
+        `}
       >
         <Sidebar />
       </div>
-
-      {/* Main Content */}
-      <section className="flex-1 flex flex-col min-h-screen">
-        <Header toggleSideBar={toggleSideBar} />
-        <section className="flex-1 bg-slate-100">{children}</section>
+      <section className="flex-1 flex flex-col min-h-screen overflow-hidden">
+        <Header toggleSidebar={toggleSideBar} />
+        <section className="pt-14 flex-1 bg-slate-100">{children}</section>
       </section>
     </main>
   );
 }
+
