@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 
 export default function Form() {
   return (
-    <div className="bg-slate-100 h-50 p-5 flex flex-col gap-5 rounded-xl w-full md:w-[400px]">
+    <div className="bg-slate-100  p-5 flex flex-col gap-5 rounded-xl w-full md:w-[400px]">
       <h1 className="font-semibold">Create a category</h1>
       <form className="gap-4 flex flex-col">
         <div className="flex flex-col gap-1">
