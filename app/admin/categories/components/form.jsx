@@ -9,7 +9,7 @@ export default function Form(){
                 name="category-name"
                 type="text"
                 placeholder="Add a category"
-                className="border px-4 py-2 rounded-lg w-full focus:outline" />
+                className="border px-4 py-2 rounded-lg w-full focus:outline-none" />
                 
             </div>
 

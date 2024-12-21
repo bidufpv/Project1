@@ -42,6 +42,8 @@ export default function AdminLayout({ children }) {
     setIsOpen(!isOpen);
   };
 
+  console.log("Sidebar toggle triggered");
+
 
   return (
     <main className="relative flex">
@@ -51,7 +53,7 @@ export default function AdminLayout({ children }) {
       <div
         ref={sideBarRef}
         className={`fixed md:hidden ease-in-out transition-all duration-400 z-50 
-        ${isOpen ? "translate-x-0" : "-translate-x-[260px]"}
+        ${isOpen ? "translate-x-0" : "-translate-x-[300px]"}
         `}
       >
         <Sidebar />

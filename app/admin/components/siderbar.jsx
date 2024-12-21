@@ -12,6 +12,7 @@ Star,
 Library,
 LogOut,
 Shield,
+Box,
  } from "lucide-react";
 
 import Link from "next/link";
@@ -59,6 +60,11 @@ const menuList = [
         name: "Admin",
         link: '/admin/admins',
         icon: <Shield className="w-5 h-5" />
+    },
+    {
+        name: "Shiprocket",
+        link: '/admin/shiprocket',
+        icon: <Box className="w-5 h-5"  />
     },
 ];
 

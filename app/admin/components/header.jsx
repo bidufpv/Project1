@@ -10,6 +10,7 @@ export default function Header({ toggleSideBar }) {
       {/* Menu Button for Mobile */}
       <div className="md:hidden flex items-center">
         <button onClick={toggleSideBar}>
+           
           <Menu className="w-6 h-6" />
         </button>
       </div>
