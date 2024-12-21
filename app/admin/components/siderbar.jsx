@@ -66,6 +66,11 @@ const menuList = [
         link: '/admin/shiprocket',
         icon: <Box className="w-5 h-5"  />
     },
+    {
+        name: "Shiprocket",
+        link: '/admin/shiprocket',
+        icon: <Box className="w-5 h-5"  />
+    },
 ];
 
     return (
