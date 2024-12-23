@@ -110,9 +110,9 @@ export default function AdminLayout({ children }) {
 
   return (
     <main className="relative flex">
-      <button onClick={toggleSideBar} className="md:hidden">
+      <div onClick={toggleSideBar} className="md:hidden">
         <Header toggleSideBar={toggleSideBar} />
-      </button>
+      </div>
       <div className="hidden md:block">
         <Sidebar />
       </div>
