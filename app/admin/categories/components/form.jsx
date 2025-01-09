@@ -1,7 +1,9 @@
 "use client";
 
+import { createNewCategory } from "@/lib/firestore/categories/write";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 export default function Form() {
@@ -24,24 +26,19 @@ export default function Form() {
   };
 
   // Function to handle form submission and send data to the server
-  const handleCreate =()=>{
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("slug", data.slug);
-    formData.append("image", image);
-    fetch("/api/categories", {
-      method: "POST",
-      body: formData,
-    }).then((res) => {
-      if (res.ok) {
-        console.log("Category created");
-      }
-    });
+  const handleCreate =async()=>{
+    try {
+      await createNewCategory(data, image);
+    } catch (error) {
+      toast.error(error?.message);
+      
+    }
   }
 
   
   return (
     <div className="bg-slate-100 p-5 flex flex-col gap-5 rounded-xl w-full md:w-[400px]">
+
       {/* Form title */}
       <h1 className="font-semibold">Create a category</h1>
 
@@ -54,6 +51,7 @@ export default function Form() {
         className="gap-5 flex flex-col"
       >
         {/* Image upload section */}
+        
         <div className="flex flex-col gap-1">
           <label htmlFor="category-image" className="text-slate-600 text-sm">
             Image

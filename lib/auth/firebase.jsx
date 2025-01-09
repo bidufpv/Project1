@@ -31,3 +31,4 @@ export const analytics = isSupported().then((yes)=>yes ? getAnalytics(app) : nul
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+// export const storage = app.storage();
