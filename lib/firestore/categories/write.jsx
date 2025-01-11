@@ -29,7 +29,7 @@
 
 import { db } from "@/lib/auth/firebase";
 import { collection, doc, setDoc, Timestamp } from "firebase/firestore";
-import { uploadToCloudinary } from "@/lib/cloudinary/uloadCloudinary";
+import { uploadToCloudinary } from "@/lib/cloudinary/uploadCloudinary";
 
 export const createNewCategory = async (data, image) => {
     if (!image) throw new Error("Image is required.");
