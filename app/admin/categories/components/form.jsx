@@ -11,7 +11,7 @@ export default function Form() {
   const [data, setData] = useState(null);
    // State to hold the uploaded image file
   const [image, setImage] = useState(null);
-
+  const [isloading, setIsLoading] = useState(false);
 
   // Function to handle updating the form data
   const handleData = (key, value) => {
@@ -27,12 +27,18 @@ export default function Form() {
 
   // Function to handle form submission and send data to the server
   const handleCreate =async()=>{
+    setIsLoading(true);
     try {
       await createNewCategory(data, image);
+      toast.success("Category created successfully");
+      setData(null); // Reset form data
+      setImage(null); // Reset image state
+      
     } catch (error) {
       toast.error(error?.message);
       
     }
+    setIsLoading(false);  // Reset loading state
   }
 
   
@@ -112,14 +118,53 @@ export default function Form() {
         </div>
 
         {/* Submit button */}
-        <div className="flex justify-end">
-          <Button
+        {/* <div className="flex justify-end">
+          <Button isLoading={isloading} isDisabled={isloading}  
             type="submit" // Form submission is handled via `onSubmit` in the parent `form`
             className="bg-blue-600 w-15 h-8 text-white rounded-lg text-xs font-semibold"
           >
             Add
           </Button>
-        </div>
+        </div> */}
+        <div className="flex justify-end">
+  <button
+    disabled={isloading} // Disable the button while loading
+    type="submit" // Form submission
+    className={`flex items-center justify-center bg-blue-600 w-20 h-10
+       text-white rounded-lg text-sm font-semibold transition duration-300 ease-in-out ${
+      isloading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-700"
+    }`}
+  >
+    {isloading ? (
+      <div className="flex items-center gap-2">
+        <svg
+          className="animate-spin h-4 w-4 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
+        <span className="text-xs">Adding...</span>
+      </div>
+    ) : (
+      "Add"
+    )}
+  </button>
+</div>
+
       </form>
     </div>
   );
