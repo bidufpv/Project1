@@ -1,5 +1,5 @@
 import { db } from "@/lib/auth/firebase";
-import { collection, doc, setDoc, Timestamp } from "firebase/firestore";
+import { collection, deleteDoc, doc, setDoc, Timestamp } from "firebase/firestore";
 import { uploadToCloudinary } from "@/lib/cloudinary/uploadCloudinary";
 
 export const createNewCategory = async (data, image) => {
@@ -22,5 +22,15 @@ export const createNewCategory = async (data, image) => {
 
     return { success: true, id: newId };
 };
+
+
+//function for deleting category
+export const deleteCategory = async ({id}) => {
+   if(!id){
+    throw new Error("Category id is required.");
+   }
+   //delete the category delete doc comes from firebase
+   await deleteDoc(doc(db, `categories/${id}`));
+}   
 
 

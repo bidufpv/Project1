@@ -3,6 +3,7 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import {getAuth} from 'firebase/auth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,6 +21,8 @@ const firebaseConfig = {
   appId: "1:1044493280341:web:ebb96fffea4b24807620dc",
   measurementId: "G-SFFBXRWT6V"
 };
+
+
 
 
 

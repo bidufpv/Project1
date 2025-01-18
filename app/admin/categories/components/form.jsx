@@ -1,7 +1,7 @@
 "use client";
 
 import { createNewCategory } from "@/lib/firestore/categories/write";
-import { Button } from "@nextui-org/react";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -12,6 +12,16 @@ export default function Form() {
    // State to hold the uploaded image file
   const [image, setImage] = useState(null);
   const [isloading, setIsLoading] = useState(false);
+
+
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  // console.log(id);
+  
+
+
+
 
   // Function to handle updating the form data
   const handleData = (key, value) => {
@@ -46,7 +56,7 @@ export default function Form() {
     <div className="bg-slate-100 p-5 flex flex-col gap-5 rounded-xl w-full md:w-[400px]">
 
       {/* Form title */}
-      <h1 className="font-semibold">Create a category</h1>
+      <h1 className="font-semibold">{id ?'Update':'Create'} a category</h1>
 
       {/* Form element with onSubmit handler */}
       <form

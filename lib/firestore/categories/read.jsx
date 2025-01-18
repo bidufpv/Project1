@@ -1,5 +1,6 @@
 "use client"; // Ensures the component is client-side in Next.js
 
+import { db } from '@/lib/auth/firebase';
 import { collection, onSnapshot } from 'firebase/firestore'; // Firebase functions for Firestore
 import useSWRSubscription from 'swr/subscription'; // SWR's subscription-based hook
 
@@ -20,8 +21,8 @@ export function useCategories() {
           next(
             null, // No error occurred
             snapshot.docs.length === 0 
-              ? null // If there are no documents, return `null`
-              : snapshot.docs.map((snap) => snap.data()) // Map document snapshots to their data
+              ? [] // If there are no documents, return an empty array
+              : snapshot.docs.map((snap) => ({ id: snap.id, ...snap.data() })) // Map document snapshots to their data
           ),
         (err) => next(err, null) // If an error occurs, pass it to SWR
       );
@@ -34,7 +35,7 @@ export function useCategories() {
   // Return the data, error, and loading state
   return {
     data, // The real-time categories data
-    error, // Any error encountered during the subscription
-    isLoading: data === undefined, // `isLoading` is true if data is still undefined
+    error:error?.message, // Any error encountered during the subscription
+    isLoading: data === undefined || !data && !error, // `isLoading` is true if data is still undefined
   };
 }
