@@ -4,10 +4,10 @@ import { db } from '@/lib/auth/firebase';
 import { collection, onSnapshot } from 'firebase/firestore'; // Firebase functions for Firestore
 import useSWRSubscription from 'swr/subscription'; // SWR's subscription-based hook
 
-export function useCategories() {
+export function useBrands() {
   // useSWRSubscription listens to real-time updates using a custom subscription
   const { data, error } = useSWRSubscription(
-    ['categories'], // The key for SWR's cache (used for data caching and revalidation)
+    ['brands'], // The key for SWR's cache (used for data caching and revalidation)
     
     // Subscription function: executed to set up the real-time listener
     ([path], { next }) => {

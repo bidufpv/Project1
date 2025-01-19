@@ -13,6 +13,7 @@ import {
   LogOut,
   Shield,
   Box,
+  Baseline,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -34,6 +35,11 @@ export default function Sidebar() {
       name: "Categories",
       link: "/admin/categories",
       icon: <ChartColumnStacked className="w-5 h-5" />,
+    },
+    {
+      name: "Brands",
+      link: "/admin/brands",
+      icon: <Baseline className="w-5 h-5"  />,
     },
     {
       name: "Orders",
