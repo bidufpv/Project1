@@ -1,9 +1,10 @@
 "use client";
-
-import { createNewCategory } from "@/lib/firestore/categories/write";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { getCategory } from "@/lib/firestore/categories/read-server";
+import { createNewCategory, updateCategory } from "@/lib/firestore/categories/write";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
 
 
 export default function Form() {
@@ -14,11 +15,33 @@ export default function Form() {
   const [isloading, setIsLoading] = useState(false);
 
 
-
+// for searching the id
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   // console.log(id);
+
+  const router = useRouter();
+
   
+
+  const fetchData = async () => {
+    try {
+      const res = await getCategory({id: id});
+      if(!res){
+        toast.error("Category not found!");
+      }else{
+        setData(res);
+      }
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]); 
 
 
 
@@ -51,6 +74,22 @@ export default function Form() {
     setIsLoading(false);  // Reset loading state
   }
 
+//function for handle update the category
+  const handleUpdate =async()=>{
+    setIsLoading(true);
+    try {
+      await updateCategory(data, image);
+      toast.success("Category Updated successfully");
+      setData(null); // Reset form data
+      setImage(null); // Reset image state
+      router.push("/admin/categories"); // Redirect to the categories page
+    } catch (error) {
+      toast.error(error?.message);
+      
+    }
+    setIsLoading(false);  // Reset loading state
+  }
+
   
   return (
     <div className="bg-slate-100 p-5 flex flex-col gap-5 rounded-xl w-full md:w-[400px]">
@@ -62,7 +101,12 @@ export default function Form() {
       <form
         onSubmit={(e) => {
           e.preventDefault(); // Prevent default form submission behavior
-          handleCreate(); // Trigger form submission logic
+          if(id){
+            handleUpdate();
+           }
+           else{
+             handleCreate(); // Trigger form submission logic
+           }
         }}
         className="gap-5 flex flex-col"
       >
@@ -170,7 +214,7 @@ export default function Form() {
         <span className="text-xs">Adding...</span>
       </div>
     ) : (
-      "Add"
+      (id ? "Update" : "Add") // Conditional button text based on form mode
     )}
   </button>
 </div>
