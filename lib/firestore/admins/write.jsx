@@ -8,7 +8,8 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";    //fireba
 export const createNewAdmin = async (data, image) => {
     
     if (!image) throw new Error("Avatar is required.");
-    if (!data?.name) throw new Error("Category name is required.");
+    if (!data?.name) throw new Error("Name is required.");
+    if (!data?.email) throw new Error("e-mail is required.");
     // if (!data?.slug) throw new Error("Category slug is required.");
 
     //for generating new random id
