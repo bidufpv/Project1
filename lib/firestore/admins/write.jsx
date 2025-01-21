@@ -27,13 +27,13 @@ export const createNewAdmin = async (data, image) => {
 };
 
 
-//function for deleting category
+//function for deleting Admin
 export const deleteAdmin = async ({id}) => {
    if(!id){
     throw new Error("Admin id is required.");
    }
-   //delete the category delete doc comes from firebase
-   await deleteDoc(doc(db, `categories/${id}`));
+   //delete the admin delete doc comes from firebase
+   await deleteDoc(doc(db, `admins/${id}`));
 }   
 
 
@@ -57,6 +57,7 @@ export const updateAdmin = async (data, image) => {
     // Update the image if a new one is provided
     let imageUrl = data?.image;
 
+ 
     if (image) {
         // Upload the new image to Cloudinary
         imageUrl = await uploadToCloudinary(image);
