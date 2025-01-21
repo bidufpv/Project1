@@ -1,7 +1,6 @@
 import { db } from "@/lib/auth/firebase";
 import { collection, deleteDoc, doc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { uploadToCloudinary } from "@/lib/cloudinary/uploadCloudinary";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";    //firebase storage
 
 
 //function for creating new category
@@ -52,10 +51,9 @@ export const updateBrand = async (data, image) => {
     const id = data.id;
 
     let imageUrl = data?.image;
-    if(image){
-        const imageRef = ref(Storage, `brands/${id}`);
-        await uploadBytes(imageRef, image);
-        imageUrl = await getDownloadURL(imageRef);
+    if (image) {
+        // Upload the new image to Cloudinary
+        imageUrl = await uploadToCloudinary(image);
     }
 
     await updateDoc(doc(db, `brands/${id}`), {
