@@ -1,7 +1,6 @@
 import { db } from "@/lib/auth/firebase";
-import { collection, deleteDoc, doc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { uploadToCloudinary } from "@/lib/cloudinary/uploadCloudinary";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";    //firebase storage
 
 
 //function for creating new Admin
@@ -13,7 +12,7 @@ export const createNewAdmin = async (data, image) => {
     // if (!data?.slug) throw new Error("Category slug is required.");
 
     //for generating new random id
-    const newId = doc(collection(db, "admins")).id;
+    const newId = data?.email;
 
     const imageUrl = await uploadToCloudinary(image);
 
@@ -49,20 +48,38 @@ export const updateAdmin = async (data, image) => {
     if(!data?.id){
         throw new Error("Admin id is required.");
     }
+    if(!data?.email){
+        throw new Error("e-mail id is required.");
+    }
     
     const id = data.id;
 
+    // Update the image if a new one is provided
     let imageUrl = data?.image;
-    if(image){
-        const imageRef = ref(Storage, `admins/${id}`);
-        await uploadBytes(imageRef, image);
-        imageUrl = await getDownloadURL(imageRef);
+
+    if (image) {
+        // Upload the new image to Cloudinary
+        imageUrl = await uploadToCloudinary(image);
     }
 
-    await updateDoc(doc(db, `admins/${id}`), {
-        ...data,
-        imageUrl,
-        timestampUpdate: Timestamp.now(),
-    });
-}
+    // If the ID (email) hasn't changed, update the existing document
+    if (id === data?.email) {
+        await updateDoc(doc(db, `admins/${id}`), {
+            ...data,
+            image: imageUrl,
+            timestampUpdate: Timestamp.now(),
+        });
+    } else {
+        // If the ID (email) has changed, delete the old document and create a new one
+        const newId = data?.email;
 
+        await deleteDoc(doc(db, `admins/${id}`)); // Delete the old document
+
+        await setDoc(doc(db, `admins/${newId}`), {
+            ...data,
+            id: newId,
+            image: imageUrl,
+            timestampUpdate: Timestamp.now(),
+        });
+    }
+};
