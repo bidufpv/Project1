@@ -154,6 +154,24 @@ export default function Form() {
           />
         </div>
 
+        <div className="flex flex-col gap-1">
+          <label htmlFor="admin-email" className="text-slate-600 text-sm">
+            Email <span className="text-red-600">*</span>{" "}
+          </label>
+          <input
+            id="admin-email"
+            name="admin-email"
+            type="email"
+            placeholder="Enter Email"
+            value={data?.email ?? ""}
+            onChange={(e) => {
+              handleData("email", e.target.value);
+            }}
+            className="border px-4 py-1 text-sm rounded-lg w-full focus:outline"
+            
+          />
+        </div>
+
         {/* Slug input field
         <div className="flex flex-col gap-1">
           <label htmlFor="category-slug" className="text-slate-600 text-sm">

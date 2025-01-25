@@ -100,7 +100,13 @@ function Row({ item, index }) {
           <span className="text-gray-400 italic">No Image</span>
         )}
       </td>
-      <td className="px-6 py-4 text-gray-700">{item?.name || "Unnamed Category"}</td>
+      <td className="px-6 py-4 text-gray-700">
+        <div>
+          <p className="">{item?.name}</p>
+          <p className="text-sm text-gray-500">{item?.email}</p>
+        </div>
+
+      </td>
       <td className="px-6 py-4 flex gap-2">
 
         <button onClick={handleUpdate}
