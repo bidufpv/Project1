@@ -32,7 +32,7 @@ export const deleteBrand = async ({id}) => {
     throw new Error("Brand id is required.");
    }
    //delete the category delete doc comes from firebase
-   await deleteDoc(doc(db, `categories/${id}`));
+   await deleteDoc(doc(db, `brands/${id}`));
 }   
 
 

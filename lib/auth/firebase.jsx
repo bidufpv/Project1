@@ -13,13 +13,13 @@ import {getAuth} from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDERJahENv1NUMXur21a1EOJipmM7sWnTE",
-  authDomain: "project-1-601f7.firebaseapp.com",
-  projectId: "project-1-601f7",
-  storageBucket: "project-1-601f7.firebasestorage.app",
-  messagingSenderId: "1044493280341",
-  appId: "1:1044493280341:web:ebb96fffea4b24807620dc",
-  measurementId: "G-SFFBXRWT6V"
+  apiKey: "NEXT_PUBLIC_FIREBASE_API_KEY",
+  authDomain: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+  projectId: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  storageBucket: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
+  messagingSenderId: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+  appId: "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID",
+  measurementId: "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID "
 };
 
 
