@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Ensure the parent container takes full width */
+.parent-container {
+    display: flex;
+    gap: 1.5rem; /* Adjust the gap between sections */
+    width: 100%;
+  }
+  
+  /* BasicDetails Section */
+  .basic-details {
+    flex: 1; /* Takes up 60% of the space */
+    max-width: 60%; /* Optional: Limit the width */
+  }
+  
+  /* Images Section */
+  .images-section {
+    flex: 1; /* Takes up 40% of the space */
+    max-width: 40%; /* Optional: Limit the width */
+  }
