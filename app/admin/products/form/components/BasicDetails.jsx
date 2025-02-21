@@ -32,7 +32,7 @@ const {data:categories} = useCategories();
             </div>
 
 
-            {/* Product Description */}
+            {/* Product Description
             <div className="flex flex-col gap-1 w-full ">
                 <label className="text-slate-700 text-xs" htmlFor="Product-description">
                     Description 
@@ -47,7 +47,7 @@ const {data:categories} = useCategories();
                 }}
                 required
                 className="border px-3 py-2 rounded-lg w-full outline-none " />
-            </div>
+            </div> */}
 
 
             {/* Product Price */}
@@ -86,7 +86,7 @@ const {data:categories} = useCategories();
             </div>
 
 
-            {/* Product Stock */}
+            {/* Product Stock */}    
             <div className="flex flex-col gap-1 w-full ">
                 <label className="text-slate-700 text-xs" htmlFor="Product-stock">
                     Stock

@@ -43,7 +43,7 @@ export default function Page(){
 
                 </div>
 
-                <button className="text-sm bg-blue-600 text-white px-4 py-2 rounded-lg">
+                <button className="text-sm w-20 hover:bg-blue-500 bg-blue-600 text-white px-4 py-2 rounded-lg">
                     Create
                 </button>
 

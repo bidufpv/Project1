@@ -7,7 +7,7 @@ export default function Page(){
             </div>
 
             <Link href={`/admin/products/form`}>
-            <button className="text-sm bg-slate-800 text-white px-4 py-2 rounded-lg">
+            <button className="text-sm  bg-slate-800 text-white px-4 py-2 rounded-lg">
                 Create
             </button>
 
