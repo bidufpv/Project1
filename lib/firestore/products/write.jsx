@@ -65,3 +65,4 @@ export const deleteProduct = async ({ id }) => {
   // ✅ Delete the product document from Firestore
   await deleteDoc(doc(db, `products/${id}`));
 };
+

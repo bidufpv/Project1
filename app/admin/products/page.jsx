@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Listview from "./form/components/ListView";
 
 export default function Page(){
     return <main className="p-6 gap-5">
@@ -12,6 +13,7 @@ export default function Page(){
             </button>
 
             </Link>
+            <Listview />
      
     </main>
 }
