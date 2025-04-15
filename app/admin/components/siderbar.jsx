@@ -90,7 +90,7 @@ export default function Sidebar() {
 
   return (
     <section
-      className="flex flex-col gap-4 items-center md:w-[220px]
+      className="sticky top-0 flex flex-col gap-4 items-center md:w-[220px]
          bg-white border-r px-4 py-3 h-screen overflow-hidden"
     >
       {/* Logo */}
