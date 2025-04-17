@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { createNewProduct } from "@/lib/firestore/products/write";
 import { getProductById, updateProductById } from "@/lib/firestore/products/read";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [data, setData] = useState({});
@@ -18,6 +19,10 @@ export default function Page() {
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+
+
+  const router = useRouter(); // Use the router to navigate after creating/updating a product
+
 
   // ✅ Fetch existing product data if editing
   useEffect(() => {
@@ -61,6 +66,7 @@ export default function Page() {
         // Update the product if in editing mode
         await updateProductById(id, { data, featureImage: featuredImage, imageList: imageList });
         toast.success("Product updated successfully!");
+        router.push("/admin/products"); // Redirect to products page after updating
       } else {
         // Create a new product if not editing
         await createNewProduct({ data, featureImage: featuredImage, imageList: imageList });
