@@ -58,7 +58,7 @@ export default function Sidebar() {
     },
     {
       name: "Collection",
-      link: "/admin/collection",
+      link: "/admin/collections",
       icon: <Library className="w-5 h-5" />,
     },
     {
