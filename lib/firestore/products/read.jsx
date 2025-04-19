@@ -63,6 +63,9 @@ export function useProducts({ pageLimit = 10, lastSnapDoc = null }) {
     }
   );
 
+
+  
+
   return {
     data: data?.list ?? [], // Array of product objects
     lastSnapDoc: data?.lastSnapDoc ?? null, // Last document snapshot for pagination
@@ -108,3 +111,26 @@ export const updateProductById = async (id, { data, featureImage, imageList }) =
     throw new Error(error.message); // Re-throw error for handling
   }
 };
+
+
+export function useProduct({ productId }) {
+  const { data, error } = useSWRSubscription(
+    ["products", productId],
+    ([path, productId], { next }) => {
+      const ref = doc(db, `${path}/${productId}`);
+
+      const unsub = onSnapshot(
+        ref,
+        (snapshot) => next(null, snapshot.data()),
+        (err) => next(err, null)
+      );
+      return () => unsub();
+    }
+  );
+
+  return {
+    data: data,
+    error: error?.message,
+    isLoading: data === undefined,
+  };
+}

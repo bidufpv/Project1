@@ -94,7 +94,7 @@ function Row({ item, index }) {
           <img
             src={item.image}
             alt={item?.name || "Brand Image"}
-            className="w-12 h-12 object-cover rounded-full"
+            className=" h-12 object-cover rounded-full"
           />
         ) : (
           <span className="text-gray-400 italic">No Image</span>

@@ -39,6 +39,7 @@ export default function Listview() {
               <th className="px-6 py-3">#</th>
               <th className="px-6 py-3">Image</th>
               <th className="px-6 py-3">Title</th>
+              <th className="px-6 py-3">Products</th>
               <th className="px-6 py-3">Actions</th>
             </tr>
           </thead>
@@ -72,7 +73,7 @@ function CollectionRow({ item, index, router }) {
   };
 
   const handleEdit = () => {
-    router.push(`/admin/collection?id=${item.id}`);
+    router.push(`/admin/collections?id=${item.id}`);
   };
 
   return (
@@ -92,6 +93,7 @@ function CollectionRow({ item, index, router }) {
       </td>
 
       <td className="px-6 py-4 text-gray-700">{item?.title || "Unnamed Collection"}</td>
+      <td className="px-6 py-4 text-gray-700">{item?.products?.length || "Unnamed Collection"}</td>
 
       <td className="px-6 py-4 flex gap-2">
         <button

@@ -1,7 +1,7 @@
 "use client"; // Ensures the component is client-side in Next.js
 
 import { db } from '@/lib/auth/firebase';
-import { collection, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore"; // Firebase functions for Firestore
+import { collection, getDocs, limit, onSnapshot, orderBy, query, startAfter } from "firebase/firestore"; // Firebase functions for Firestore
 import useSWRSubscription from 'swr/subscription'; // SWR's subscription-based hook
 
 //for fetching products
