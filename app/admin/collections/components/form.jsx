@@ -104,7 +104,7 @@ export default function Form() {
     setIsLoading(false); // Reset loading state
   };
 
-  //function for handle update the category
+  //function for handle update the collection
   const handleUpdate = async () => {
     setIsLoading(true);
     try {
@@ -112,7 +112,7 @@ export default function Form() {
       toast.success("Collection Updated successfully");
       setData(null); // Reset form data
       setImage(null); // Reset image state
-      router.push("/admin/collections"); // Redirect to the categories page
+      router.push("/admin/collections"); // Redirect to the collections page
     } catch (error) {
       toast.error(error?.message);
     }
@@ -139,7 +139,7 @@ export default function Form() {
         {/* Image upload section */}
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="category-image" className="text-slate-600 text-sm">
+          <label htmlFor="collection-image" className="text-slate-600 text-sm">
             Image
             <span className="text-red-600">*</span>
           </label>
