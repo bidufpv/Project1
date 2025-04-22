@@ -1,7 +1,7 @@
 "use client"; // Ensures the component is client-side in Next.js
 
 import { db } from '@/lib/auth/firebase';
-import { collection, onSnapshot } from 'firebase/firestore'; // Firebase functions for Firestore
+import { collection, doc, onSnapshot } from 'firebase/firestore'; // Firebase functions for Firestore
 import useSWRSubscription from 'swr/subscription'; // SWR's subscription-based hook
 
 export function useAdmins() {
@@ -32,10 +32,35 @@ export function useAdmins() {
     }
   );
 
+  
+
   // Return the data, error, and loading state
   return {
     data, // The real-time categories data
     error:error?.message, // Any error encountered during the subscription
     isLoading: data === undefined || !data && !error, // `isLoading` is true if data is still undefined
+  };
+}
+
+
+export function useAdmin({ email }) {
+  const { data, error } = useSWRSubscription(
+    ["admins", email],
+    ([path, email], { next }) => {
+      const ref = doc(db, `admins/${email}`);
+      const unsubscribe = onSnapshot(
+        ref,
+        (snapshot) => next(null, snapshot.exists() ? snapshot.data() : null),
+        (err) => next(err, null)
+      );
+      return () => unsubscribe();
+    }
+  );
+
+  // ✅ Now inside the function
+  return {
+    data,
+    error: error?.message,
+    isLoading: data === undefined || (!data && !error),
   };
 }

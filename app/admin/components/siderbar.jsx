@@ -94,7 +94,10 @@ export default function Sidebar() {
          bg-white border-r px-4 py-3 h-screen overflow-hidden"
     >
       {/* Logo */}
+      <Link href="/">
       <img className="h-10 w-auto mb-2" src="/logo.jpg" alt="Logo" />
+      </Link>
+      
 
       {/* Menu List */}
       <ul className="flex-1 w-full overflow-y-auto flex flex-col gap-3">
