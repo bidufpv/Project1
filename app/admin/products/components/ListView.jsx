@@ -140,7 +140,7 @@ function Row({ item, index }) {
   };
 
   const price = Number(item?.price) || 0;
-  const salePrice = Number(item?.salePrice) || price;
+  const salePrice = Number(item?.saleprice) || price;
   const stock = Number(item?.stock) || 0;
   const orders = Number(item?.orders) || 0;
 
@@ -164,11 +164,18 @@ function Row({ item, index }) {
       </td>
       <td className="px-6 py-4 text-gray-700 whitespace-nowrap">
         {item?.title || "Unnamed Product"}{" "}
-        {item?.isFeatured && (
-          <span className="ml-2 text-[10px] bg-blue-500 text-white px-2 py-1 rounded-full">
+       {/* {item?.isFeatured && (
+        <span className="bg-gradient-to-tr from-blue-500 to-indigo-500 text-white">
+          Featured
+        </span>
+       )} */}
+
+{item?.isFeatured === true && (
+          <span className="ml-2 bg-gradient-to-tr from-blue-500 to-indigo-400 text-white text-[10px] rounded-full px-3 py-1">
             Featured
           </span>
         )}
+
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-gray-700">
         {salePrice < price && (

@@ -7,6 +7,10 @@ export default function BasicDetails({ data, handleData }) {
   const { data: brand } = useBrands();
   const { data: categories } = useCategories();
 
+  console.log("BasicDetails", data);
+  //todo fix isFeatured
+  console.log('isFeaturedlog',data?.isFeatured);
+
   return (
     <section className="flex flex-col gap-5 bg-white rounded-xl p-5 border">
       <h1 className="font-semibold">Basic Details</h1>
@@ -31,22 +35,6 @@ export default function BasicDetails({ data, handleData }) {
         />
       </div>
 
-      {/* Product Description
-            <div className="flex flex-col gap-1 w-full ">
-                <label className="text-slate-700 text-xs" htmlFor="Product-description">
-                    Description 
-                    <span className="text-red-600">*</span>
-                </label>
-                <input type="text" placeholder="Enter description"
-                id="product-description" name="Product-description"
-
-                value={data?.description ?? ""}
-                onChange={(e)=>{
-                    handleData("description", e.target.value)
-                }}
-                required
-                className="border px-3 py-2 rounded-lg w-full outline-none " />
-            </div> */}
 
       {/* Product Price */}
       <div className="flex flex-col gap-1 w-full ">
@@ -159,6 +147,61 @@ export default function BasicDetails({ data, handleData }) {
           ))}
         </select>
       </div>
+
+
+      {/* <div className="flex flex-col gap-1 w-full ">
+        <label className="text-slate-700 text-xs" htmlFor="Product-is-featured">
+          Is Featured
+          <span className="text-red-600">*</span>
+        </label>
+        <select
+          type="number"
+          placeholder="Enter Sale Price"
+          id="Product-is-featured"
+          name="Product-is-featured"
+          value={data?.isFeatured ? "true":"false"}
+          onChange={(e) => {
+            handleData("isFeatured", e.target.value === "true" ? true : false); // Convert to boolean
+          }}
+          required
+          className="border px-3 py-2 rounded-lg w-full outline-none "
+        >
+          <option value={false}>No</option>
+          <option value={true}>Yes</option>
+
+        </select>
+      </div> */}
+
+<div className="flex flex-col gap-1">
+        <label
+          className="text-gray-500 text-xs"
+          htmlFor="product-is-featured-product"
+        >
+          Is Featured Product <span className="text-red-500">*</span>{" "}
+        </label>
+        <select
+          type="number"
+          placeholder="Enter Sale Price"
+          id="product-is-featured-product"
+          name="product-is-featured-product"
+          value={data?.isFeatured === true ? "true" : "false"}
+          onChange={(e) => {
+            handleData("isFeatured", e.target.value === "true");
+          }}
+          className="border px-4 py-2 rounded-lg w-full outline-none"
+          required
+        >
+          <option value={false}>No</option>
+          <option value={true}>Yes</option>
+        </select>
+
+
+        
+      </div>
+
+
+
+
     </section>
   );
 }

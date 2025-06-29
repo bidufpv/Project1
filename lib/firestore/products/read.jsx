@@ -103,6 +103,7 @@ export const updateProductById = async (id, { data, featureImage, imageList }) =
       price: data.price,
       featureImageURL: featureImage,
       imageList: imageList,
+      isFeatured: data.isFeatured,
     });
 
     console.log("✅ Product updated successfully!");
