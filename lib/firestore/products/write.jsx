@@ -26,7 +26,7 @@ export const createNewProduct = async ({ data, featureImage, imageList }) => {
     featureImageURL,
     imageList: imageURLList,
     id: newId,
-    timestampCreate: Timestamp.now(),
+    timestampCreate: Timestamp.now().toDate().toISOString(),
   });
 };
 
@@ -42,6 +42,8 @@ export const updateProduct = async ({ data, featureImage, imageList }) => {
     featureImageURL = await uploadToCloudinary(featureImage);
   }
 
+  
+
   // ✅ Handle additional images:
   let imageURLList = imageList?.length === 0 ? data?.imageList : [];
   for (let i = 0; i < imageList?.length; i++) {
@@ -54,7 +56,7 @@ export const updateProduct = async ({ data, featureImage, imageList }) => {
     ...data,
     featureImageURL: featureImageURL,
     imageList: imageURLList,
-    timestampUpdate: Timestamp.now(),
+    timestampUpdate: Timestamp.now().toDate().toISOString(),
   });
 };
 
