@@ -19,7 +19,7 @@ export const createNewCategory = async (data, image) => {
         ...data,
         image: imageUrl,
         id: newId,
-        timestampCreate: Timestamp.now(),
+        timestampCreate: Timestamp.now().toDate().toISOString(),
     });
 
     return { success: true, id: newId };
@@ -59,7 +59,7 @@ export const updateCategory = async (data, image) => {
     await updateDoc(doc(db, `categories/${id}`), {
         ...data,
         imageUrl,
-        timestampUpdate: Timestamp.now(),
+        timestampUpdate: Timestamp.now().toDate().toISOString(),
     });
 }
 
