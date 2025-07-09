@@ -30,7 +30,7 @@ export const fetchPaginatedProducts = async ({ limitCount = 10, startAfterDoc = 
 export function useCollection() {
   // useSWRSubscription listens to real-time updates using a custom subscription
   const { data, error } = useSWRSubscription(
-    ['collection'], // The key for SWR's cache (used for data caching and revalidation)
+    ['collections'], // The key for SWR's cache (used for data caching and revalidation)
     
     // Subscription function: executed to set up the real-time listener
     ([path], { next }) => {

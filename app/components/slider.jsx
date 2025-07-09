@@ -1,52 +1,62 @@
-"use client"
+"use client";
 import Slider from "react-slick";
 import { Heart } from "lucide-react";
 import { Button } from "@nextui-org/react";
 
-export default function Productslider({featuredProducts}) {
-  var settings = {
+export default function Productslider({ featuredProducts }) {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
-    <div className="w-screen overflow-hidden">
+    <div className="w-full overflow-hidden">
       <Slider {...settings}>
-     {featuredProducts?.map((product)=>{
-        return(
-            <div key={product.id}>
-            <div className="flex gap-4 bg-gray-100 p-10 md:px-24 md:py-20" key={product.id}>
-              <div className="flex-1 flex flex-col gap-4">
-                <h2 className="text-slate-600">NEW PRRODUCTS</h2>
-                <h1 className="text-4xl font-serif">{product?.title}</h1>
-                <h1 className="text-sm text-gray-500 max-w-96 line-clamp-2">{product?.description.replace(/<[^>]+>/g, '')}</h1>
-                <div className="flex gap-4">
-                    <Button className="px-2 py-1 rounded-xl bg-blue-600 text-white font-normal">
-                        Buy Now
-                        </Button>
+        {featuredProducts?.map((product) => (
+          <div key={product.id}>
+            <div className="flex flex-col md:flex-row items-center gap-10 bg-gradient-to-tr from-gray-100 to-white p-6 md:p-16 rounded-lg">
+              
+              {/* Left: Content */}
+              <div className="flex-1 flex flex-col gap-6 text-center md:text-left">
+                <span className="uppercase text-blue-600 tracking-wide font-semibold text-sm">
+                  New Arrival
+                </span>
+                <h1 className="text-3xl md:text-5xl font-serif font-bold text-gray-800">
+                  {product?.title}
+                </h1>
+                <p className="text-gray-500 max-w-xl line-clamp-3 mx-auto md:mx-0 text-sm md:text-base">
+                  {product?.description?.replace(/<[^>]+>/g, '')}
+                </p>
 
-                    <Button className="px-2 py-1 rounded-xl border-blue-600 border-2
-                     text-blue-700 font-normal">
-                        Add to Cart 
-                        </Button>
-
-                    <Button className="px-1 py-1 rounded-lg ">
-                        <Heart className="text-red-600 w-7 h-7" />
-                        </Button>
-
-
+                {/* Buttons */}
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-4">
+                  <Button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+                    Buy Now
+                  </Button>
+                  <Button className="border-2 border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-100 transition">
+                    Add to Cart
+                  </Button>
+                  <Button isIconOnly className="hover:bg-red-100 rounded-full p-2">
+                    <Heart className="text-red-600 w-6 h-6" />
+                  </Button>
                 </div>
               </div>
-              <div>
-                <img className="h-[15rem] w-full" src={product?.featureImageURL} alt="" />
+
+              {/* Right: Image */}
+              <div className="flex-1 flex justify-center">
+                <img
+                  src={product?.featureImageURL}
+                  alt={product?.title}
+                  className="w-full max-w-xs md:max-w-md h-auto object-contain rounded-lg shadow-md"
+                />
               </div>
             </div>
-            </div>
-        )
-     })}
-    </Slider>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }

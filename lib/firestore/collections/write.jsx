@@ -21,11 +21,13 @@ export const createNewCollection = async (data, image) => {
   const newId = doc(collection(db, "collections")).id;
   const imageUrl = await uploadToCloudinary(image);
 
-  await setDoc(doc(db, `collection/${newId}`), {
+  await setDoc(doc(db, `collections/${newId}`), {
     ...data,
     image: imageUrl,
     id: newId,
     timestampCreate: Timestamp.now(),
+    isFeatured: true, 
+
   });
 
   return { success: true, id: newId };
@@ -35,7 +37,7 @@ export const createNewCollection = async (data, image) => {
 export const deleteCollection = async ({ id }) => {
   if (!id) throw new Error("Collection ID is required.");
 
-  await deleteDoc(doc(db, `collection/${id}`));
+  await deleteDoc(doc(db, `collections/${id}`));
 };
 
 // Update a collection
@@ -52,7 +54,7 @@ export const updateCollection = async (data, image) => {
     imageUrl = await uploadToCloudinary(image);
   }
 
-  await updateDoc(doc(db, `collection/${id}`), {
+  await updateDoc(doc(db, `collections/${id}`), {
     ...data,
     image: imageUrl,
     timestampUpdate: Timestamp.now(),
