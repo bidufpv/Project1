@@ -1,5 +1,5 @@
 import { db } from "@/lib/auth/firebase"; 
-import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { doc, getDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
 
 
 
@@ -41,6 +41,26 @@ export const getFeaturedProducts = async () => {
 
   // Execute the query and get matching documents
   const querySnapshot = await getDocs(featuredQuery);
+
+  // Map each document to a product object with its ID and data
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+};
+
+
+/**
+ * Fetch all products from Firestore.
+ * 
+ * @returns {Promise<Array>} - An array of product objects.
+ */
+export const getAllProducts = async () => {
+  // Get a reference to the "products" collection
+  const productsCollection = collection(db, "products");
+
+  // Execute a query to get all documents in the collection
+  const querySnapshot = await getDocs(query(collection(db, "products"), orderBy("timestampCreate", "desc")));
 
   // Map each document to a product object with its ID and data
   return querySnapshot.docs.map((doc) => ({
