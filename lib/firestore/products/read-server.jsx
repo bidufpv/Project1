@@ -51,18 +51,14 @@ export const getFeaturedProducts = async () => {
 
 
 /**
- * Fetch all products from Firestore.
+ * Fetch all products from Firestore, ordered by creation timestamp.
  * 
  * @returns {Promise<Array>} - An array of product objects.
  */
 export const getAllProducts = async () => {
-  // Get a reference to the "products" collection
-  const productsCollection = collection(db, "products");
+  const productsQuery = query(collection(db, "products"), orderBy("timestampCreate", "desc"));
+  const querySnapshot = await getDocs(productsQuery);
 
-  // Execute a query to get all documents in the collection
-  const querySnapshot = await getDocs(query(collection(db, "products"), orderBy("timestampCreate", "desc")));
-
-  // Map each document to a product object with its ID and data
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),

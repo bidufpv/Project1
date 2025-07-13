@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Slider from "react-slick";
 
-export default function Categories({ categories }) {
+export default function Brands({ brands }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -40,28 +40,28 @@ export default function Categories({ categories }) {
       
       {/* Section Heading */}
       <h1 className="text-xl  text-center text-gray-800 mb-10">
-        Shop by Category
+        Shop by Brand
       </h1>
 
       {/* Slider */}
       <Slider {...settings}>
-        {categories?.map((category) => (
-          <div key={category?.id} className="px-4">
-            <Link href={`/collections/${category?.id}`} className="block group">
+        {brands?.map((brand) => (
+          <div key={brand?.id} className="px-4">
+            <Link href={`/collections/${brand?.id}`} className="block group">
               <div className="flex flex-col items-center justify-center gap-4 p-4 rounded-xl transition-transform duration-300 hover:scale-105">
                 
                 {/* Image */}
                 <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden">
                   <img
-                    src={category?.imageUrl}
-                    alt={category?.name}
+                    src={brand?.imageUrl}
+                    alt={brand?.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
 
-                {/* Category Name */}
+                {/* Brand Name */}
                 <h2 className="text-sm md:text-base font-normal text-gray-700 text-center">
-                  {category?.name}
+                  {brand?.name}
                 </h2>
               </div>
             </Link>
