@@ -12,14 +12,24 @@ import {getAuth} from 'firebase/auth';
 
 
 
+// const firebaseConfig = {
+//   apiKey: "",
+//   authDomain: "",
+//   projectId: "",
+//   storageBucket: "",
+//   messagingSenderId: "",
+//   appId: "",
+//   measurementId: ""
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDERJahENv1NUMXur21a1EOJipmM7sWnTE",
-  authDomain: "project-1-601f7.firebaseapp.com",
-  projectId: "project-1-601f7",
-  storageBucket: "project-1-601f7.firebasestorage.app",
-  messagingSenderId: "1044493280341",
-  appId: "1:1044493280341:web:ebb96fffea4b24807620dc",
-  measurementId: "G-SFFBXRWT6V"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 
@@ -28,7 +38,7 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-const app =  !getApps().length ? initializeApp(firebaseConfig) : getApp();
+export const app =  !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export const analytics = isSupported().then((yes)=>yes ? getAnalytics(app) : null);
 
