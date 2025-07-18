@@ -97,14 +97,27 @@ export const updateProductById = async (id, { data, featureImage, imageList }) =
 
   try {
     // Update the document with new values
+    // await updateDoc(productRef, {
+    //   title: data.title,
+    //   description: data.description,
+    //   price: data.price,
+    //   featureImageURL: featureImage,
+    //   imageList: imageList,
+    //   isFeatured: data.isFeatured,
+    //   saleprice: data.saleprice,
+    // });
+
+
     await updateDoc(productRef, {
-      title: data.title,
-      description: data.description,
-      price: data.price,
-      featureImageURL: featureImage,
-      imageList: imageList,
-      isFeatured: data.isFeatured,
-    });
+  title: data.title,
+  description: data.description,
+  price: data.price,
+  saleprice: data.saleprice,
+  ...(featureImage && { featureImageURL: featureImage }),
+  imageList: imageList,
+  ...(typeof data.isFeatured !== "undefined" && { isFeatured: data.isFeatured }),
+  ...(typeof data.timestampUpdate !== "undefined" && { timestampUpdate: Timestamp.now().toDate().toISOString() }),
+});
 
     console.log("✅ Product updated successfully!");
   } catch (error) {

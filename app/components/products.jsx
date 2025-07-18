@@ -2,6 +2,7 @@
 import { Rating } from "@mui/material";
 import { Button } from "@nextui-org/react";
 import { ShoppingCart, Heart } from "lucide-react";
+import Link from "next/link";
 import striptags from "striptags";
 
 export default function Products({ products }) {
@@ -26,21 +27,45 @@ function ProductCard({ product }) {
   const plainText = striptags(product?.description || "");
 
   return (
-    <div className="bg-white border border-blue-100 rounded-xl p-4 shadow hover:shadow-md transition duration-300 flex flex-col justify-between">
+    <div className="bg-white border border-blue-100 rounded-xl p-3 gap-1 shadow hover:shadow-md transition duration-300 flex flex-col justify-between">
       <img
         src={product?.featureImageURL}
         alt={product?.title}
         className="w-full h-48 object-cover rounded-lg mb-4"
       />
-      <h2 className="text-lg font-semibold text-blue-800 mb-1">{product?.title}</h2>
-      <p className="text-sm text-gray-600 mb-4 line-clamp-3">{plainText}</p>
+       
+       <Link href={`/products/${product?.id}`} >
+             <h2 className="text-lg font-semibold text-blue-800 mb-1">{product?.title}</h2> 
+       </Link>
 
-        <div>
-        <Rating size="small" readOnly name="half-rating" defaultValue={2.5} precision={0.5} />
-        </div>
+      <p className="text-sm text-gray-600 mb-2 line-clamp-3">{plainText}</p>
 
-      <div className="flex justify-between items-center gap-2 mt-auto">
-        {/* Buy Now Button */}
+      {/* Price Display
+      <p className="text-base font-medium text-black mb-2">
+        ₹ {product?.price?.toLocaleString() || "N/A"}
+      </p> */}
+
+       {/* Pricing with Sale Price */}
+      <div className="mb-2">
+        <h2 className="text-green-500 text-sm font-semibold">
+          ₹ {product?.saleprice?.toLocaleString()}{" "}
+          <span className="line-through text-xs text-gray-600">
+            ₹ {product?.price?.toLocaleString()}
+          </span>
+        </h2>
+      </div>
+
+      {/* Rating */}
+      <Rating
+        size="small"
+        readOnly
+        name="half-rating"
+        defaultValue={2.5}
+        precision={0.5}
+      />
+
+      {/* Action Buttons */}
+      <div className="flex justify-between items-center gap-2 mt-3">
         <Button
           size="sm"
           className="w-full bg-blue-600 text-white hover:bg-blue-700 rounded-full"
@@ -48,9 +73,7 @@ function ProductCard({ product }) {
           Buy Now
         </Button>
 
-        {/* Icons Section */}
         <div className="flex gap-2">
-          {/* Cart Icon Button */}
           <Button
             isIconOnly
             size="sm"
@@ -59,7 +82,6 @@ function ProductCard({ product }) {
             <ShoppingCart className="w-4 h-4" />
           </Button>
 
-          {/* Wishlist Heart Icon */}
           <Button
             isIconOnly
             size="sm"

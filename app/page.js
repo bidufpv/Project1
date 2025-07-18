@@ -9,13 +9,18 @@ import Products from "./components/products";
 import CustomerReviews from "./components/customerreviews";
 import Brands from "./components/brands";
 import { getBrands } from "@/lib/firestore/brands/read-server";
+import Footer from "./components/footer";
 
 export default async function Home() {
-  const featuredProducts = await getFeaturedProducts();
-  const featuredcollections = await getfeaturedcollection();
-  const categories = await getCategories(); 
-  const products = await getAllProducts(); 
-  const brands = await getBrands();
+   
+  const[featuredProducts, featuredcollections, categories,products, brands] = await Promise.all([
+    getFeaturedProducts(),
+    getfeaturedcollection(),
+    getCategories(),
+    getAllProducts(),
+    getBrands()
+  ])
+
 
   return (
     <main className="flex gap-4">
@@ -25,8 +30,9 @@ export default async function Home() {
       <Featuredcollection featuredcollections={featuredcollections} />
       <Categories categories={categories}/>
       <Products products={products}/>
-      <CustomerReviews />
       <Brands brands={brands}/>
+      <CustomerReviews />
+      <Footer/>
       </section>
     </main>
   );
